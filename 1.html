@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивті тест</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 to-slate-900 min-h-screen flex items-center justify-center p-4 text-white">
+    <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-lg w-full border border-white/20">
+        <h1 class="text-2xl font-bold mb-4 text-center">Білімді тексеру тесті</h1>
+        <div id="quiz-container">
+            <p id="question" class="text-lg mb-6 text-indigo-200">Сұрақ жүктелуде...</p>
+            <div id="options" class="space-y-3"></div>
+        </div>
+        <div id="result" class="hidden text-center text-xl font-semibold mt-4 text-emerald-400"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Қазақстанның астанасы қалай аталады?",
+                options: ["Алматы", "Астана", "Шымкент", "Қарағанды"],
+                answer: 1
+            },
+            {
+                question: "Информатика пәні нені оқытады?",
+                options: ["Тарихты", "Ақпаратты және оны өңдеуді", "Табиғатты", "Әдебиетті"],
+                answer: 1
+            }
+        ];
+
+        let currentQ = 0, score = 0;
+        const qEl = document.getElementById("question"), optEl = document.getElementById("options"), resEl = document.getElementById("result");
+
+        function loadQuestion() {
+            if (currentQ < quizData.length) {
+                const q = quizData[currentQ];
+                qEl.textContent = q.question;
+                optEl.innerHTML = "";
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement("button");
+                    btn.textContent = opt;
+                    btn.className = "w-full py-3 px-4 bg-indigo-600/50 hover:bg-indigo-600 rounded-xl transition font-medium text-left border border-indigo-400/30";
+                    btn.onclick = () => {
+                        if (idx === q.answer) score++;
+                        currentQ++;
+                        loadQuestion();
+                    };
+                    optEl.appendChild(btn);
+                });
+            } else {
+                qEl.parentElement.innerHTML = `<h2 class="text-2xl font-bold text-center mb-2">Нәтиже</h2><p class="text-center text-lg">Сіз ${quizData.length} сұрақтан ${score} дұрыс жауап таптыңыз!</p>`;
+            }
+        }
+        loadQuestion();
+    </script>
+</body>
+</html>

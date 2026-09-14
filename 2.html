@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қадамдық Жүйе | 2sts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-lg w-full bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+        
+        <!-- Декоративті фондық жарқырау -->
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- 1-ші Қадам -->
+        <div id="step-1" class="fade-in">
+            <div class="flex items-center justify-between mb-6">
+                <span class="text-xs uppercase tracking-widest bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1.5 rounded-full font-bold">1-ші қадам / 2</span>
+                <span class="text-xs text-slate-500 font-medium">50%</span>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight mb-3">Қош келдіңіз!</h1>
+            <p class="text-slate-400 leading-relaxed mb-8">
+                Бұл веб-қосымша сіздің жеке мақсаттарыңызға немесе жобаңызға арналған қадамдық интерфейс үлгісі. Жалғастыру үшін төмендегі батырманы басыңыз.
+            </p>
+            <div class="space-y-3">
+                <button onclick="nextStep()" class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 active:scale-[0.98] rounded-2xl font-semibold transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+                    <span>Жалғастыру</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- 2-ші Қадам -->
+        <div id="step-2" class="hidden fade-in">
+            <div class="flex items-center justify-between mb-6">
+                <span class="text-xs uppercase tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full font-bold">2-ші қадам / 2</span>
+                <span class="text-xs text-slate-500 font-medium">100%</span>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight mb-3">Тамаша, сәтті аяқталды!</h1>
+            <p class="text-slate-400 leading-relaxed mb-8">
+                Барлық қадамдар сәтті өтті. Енді сіз бұл кодты өзгертіп, қажетті ақпараттарды жаза аласыз немесе GitHub Pages арқылы әлемге көрсете аласыз.
+            </p>
+            <div class="space-y-3">
+                <button onclick="prevStep()" class="w-full py-4 bg-slate-800 hover:bg-slate-700 active:scale-[0.98] rounded-2xl font-semibold transition border border-slate-700/50 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                    <span>Артқа қайту</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function nextStep() {
+            document.getElementById('step-1').classList.add('hidden');
+            const s2 = document.getElementById('step-2');
+            s2.classList.remove('hidden');
+            s2.classList.add('fade-in');
+        }
+        function prevStep() {
+            document.getElementById('step-2').classList.add('hidden');
+            const s1 = document.getElementById('step-1');
+            s1.classList.remove('hidden');
+            s1.classList.add('fade-in');
+        }
+    </script>
+</body>
+</html>
